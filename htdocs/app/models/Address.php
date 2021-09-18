@@ -17,7 +17,7 @@ class Address extends app\core\Model {
 	}
 
 	public function insertAddress() {
-		$SQL = "INSERT INTO Address(`person_id`, `description`, `street`, `city`, `province`, `postal_code`, `countrty_code`) 
+		$SQL = "INSERT INTO Address(`person_id`, `description`, `street`, `city`, `province`, `postal_code`, `country_code`) 
 			VALUES (:personId, :description, :streetAddress, :province, :postalCode, :countryCode);";
 		$STMT = self::$connection->prepare($SQL);
 		// this is an associative array.
@@ -32,7 +32,7 @@ class Address extends app\core\Model {
 		$STMT->execute(["address_id" => $addressId);
 	}
 
-	public function updateAddress($address_id) {
+	public function updateAddress($addressId) {
 		$SQL = "UPDATE ADDRESS SET `description` = $this->description, `street` = $this->streetAddress, `province` = $this->province,
 			`postal_code` = $this->postalCode, `country_code` = $this->countryCode WHERE `address_id` = :addressId";
 		$STMT = self::connection->prepare($SQL);
