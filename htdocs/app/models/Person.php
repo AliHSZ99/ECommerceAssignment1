@@ -1,6 +1,8 @@
 <?php
 
-class Person {
+namespace app\models;
+
+class Person extends \app\core\Model{
 
 	private $personId;
 	private $firstName;
@@ -9,6 +11,34 @@ class Person {
 
 	public function __construct() {
 		parent::__construct();
+	}
+
+	public function getPersonId() {
+		return $this->personId;
+	}
+
+	public function getFirstName() {
+		return $this->firstName;
+	}
+
+	public function setFirstName($newFirstName) {
+		$this->firstName = $newFirstName;
+	}
+
+	public function getLastName() {
+		return $this->lastName;
+	}
+
+	public function setLastName($newLastName) {
+		$this->lastName = $newLastName;
+	}
+
+	public function getNote() {
+		return $this->note;
+	}
+
+	public function setNote($newNote) {
+		return $this->note = $newNote;
 	}
 
 	public function insertPerson() {
