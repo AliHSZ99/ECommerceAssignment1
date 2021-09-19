@@ -3,7 +3,7 @@
 		<title>Main Page</title>
 	</head>
 	<body>
-	<a href="/Main/addPerson">Add a new person</a>
+	<a href="/PersonController/insertPersonController">Add a new person</a>
 		<table>
 			<tr>
 				<th>Person ID</th>
@@ -14,17 +14,24 @@
 
 			<?php
 				foreach($data as $person) {
+					print_r($person);
+					// SUPER DUPER IMPORTANT, THE DATA WE ARE ACCESSING IS NOT FROM THE CLASS, BUT FROM THE DATABASE. 
+					echo $person->first_name;
 					echo "
 						<tr>
-							<td>$person->personId</td>
-							<td>$person->firstName</td>
-							<td>$person->lastName</td>
-							<td>$person->note</td>
+							<td>$person->person_id</td>
+							<td>$person->first_name</td>
+							<td>$person->last_name</td>
+							<td>$person->notes</td>
 
-							<a href='/Main/details/$person->personId'>Details</a>
-							<a href='/Main/edit/$person->personId'>Edit</a>
-							<a href='/Main/delete/$person->personId'>Delete</a>
+							<a href='/PersonController/detailsPersonController/$person->person_id'>Details</a>
+							<a href='/PersonController/editPersonController/$person->personId'>Edit</a>
+							<a href='/PersonController/deletePersonController/$person->personId'>Delete</a>
 						</tr>";
+
+						
+
+						
 				}
 			?>
 

@@ -3,11 +3,11 @@
 namespace app\models;
 
 class Person extends \app\core\Model{
-
-	private $personId;
-	private $firstName;
-	private $lastName;
-	private $note;
+	
+	public $personId;
+	public $firstName;
+	public $lastName;
+	public $note;
 
 	public function __construct() {
 		parent::__construct();
@@ -42,25 +42,27 @@ class Person extends \app\core\Model{
 	}
 
 	public function insertPerson() {
-		$SQL = "INSERT INTO Person(`first_name`, `last_name`, `note`) VALUES (:firstName, :lastName, :note)";
+		$SQL = 'INSERT INTO Person(`first_name`, `last_name`, `notes`) VALUES (:firstName, :lastName, :note)';
 		$STMT = self::$connection->prepare($SQL);
-		$STMT->execute(["first_name" => $this->firstName, "last_name" => $this->lastName, "note" => $this->notes]);
+		// keys inside array are object variables.
+		$STMT->execute(['firstName' => $this->firstName, 'lastName'=>$this->lastName, 'note'=>$this->note]);
 	}
 
 	public function deletePerson($personId) {
 		$SQL = "DELETE FROM Person WHERE person_id = :personId";
 		$STMT = self::$connection->prepare($SQL);
-		$STMT->execute(["person_id" => $personId]);
+		$STMT->execute(["personId" => $personId]);
 	}
 
 	public function updatePerson() {
 		$SQL = "UPDATE Person SET `first_name` = :firstName, `last_name` = :lastName, `notes` = :note";
 		$STMT = self::$connection->prepare($SQL);
-		$STMT->execute(["first_name" => $this->firstName, "last_name" => $this->lastName, "notes" => $this->note]);
+		// keys inside array are object variables.
+		$STMT->execute(["firstName" => $this->firstName, "lastName" => $this->lastName, "note" => $this->note]);
 	}
 
 	public function getAllPeople() {
-		$SQL = "SELECT * FROM Person;";
+		$SQL = "SELECT * FROM Person";
 		$STMT = self::$connection->query($SQL);
 		$STMT->setFetchMode(\PDO::FETCH_OBJ);
 		return $STMT->fetchAll();
@@ -69,7 +71,8 @@ class Person extends \app\core\Model{
 	public function getPerson($personId) {
 		$SQL = "SELECT * FROM Person WHERE person_id = :personId";
 		$STMT = self::$connection->prepare($SQL);
-		$STMT->execute(["person_id" => $this->personId]);
+		// keys inside array are object variables.
+		$STMT->execute(["personId" => $this->personId]);
 		$STMT->setFetchMode(\PDO::FETCH_OBJ);
 		return $STMT->fetch();
 	}

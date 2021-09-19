@@ -7,6 +7,6 @@
         First Name: <input type="text" name="firstName" value='<?php echo $data->firstName?>'>
         Last Name: <input type="text" name="lastName" value='<?php echo $data->lastName?>'>
         Note: <input type="text" name="note" value='<?php echo $data->note?>'>
-        <a href="Main/index">Return to the list</a>
+        <a href="/PersonController/index">Return to the list</a>
     </body>
 </html>
