@@ -6,8 +6,8 @@ namespace app\core;
 
 class App {
 
-	private $controller = '\\index'; // set a default value for the controller
-	private $method = '';
+	private $controller = 'app\\controllers\\PersonController'; // set a default value for the controller
+	private $method = 'index';
 	private $params = [];
 
 
@@ -41,6 +41,7 @@ class App {
         if (isset($url[1])) {
         	if (method_exists($this->controller, $url[1])) {
         		$this->method = $url[1];
+                echo "method is here";
         	} else {
         		echo "no such method";
         	}
@@ -55,7 +56,7 @@ class App {
         //$obj = new \app\controllers\Main();
 
         // run this command below:
-        call_user_func_array(array($this->controller, "index"), []);
+        call_user_func_array(array($this->controller, $this->method), $this->params);
     }
 
     //"Default/index"

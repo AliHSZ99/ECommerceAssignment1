@@ -54,12 +54,11 @@ class Person extends \app\core\Model{
 		$STMT->execute(["personId" => $personId]);
 	}
 
-	public function updatePerson() {
-		$SQL = "UPDATE Person SET `first_name` = :firstName, `last_name` = :lastName, `notes` = :note";
-		$STMT = self::$connection->prepare($SQL);
-		// keys inside array are object variables.
-		$STMT->execute(["firstName" => $this->firstName, "lastName" => $this->lastName, "note" => $this->note]);
-	}
+	// public function update(){//update an animal record
+    //     $SQL = 'UPDATE animal SET species=:species,colour=:colour WHERE animal_id = :animal_id';
+    //     $STMT = self::$_connection->prepare($SQL);
+    //     $STMT->execute(['species'=>$this->species,'colour'=>$this->colour,'animal_id'=>$this->animal_id]);//associative array with key => value pairs
+    // }
 
 	public function getAllPeople() {
 		$SQL = "SELECT * FROM Person";
@@ -72,7 +71,7 @@ class Person extends \app\core\Model{
 		$SQL = "SELECT * FROM Person WHERE person_id = :personId";
 		$STMT = self::$connection->prepare($SQL);
 		// keys inside array are object variables.
-		$STMT->execute(["personId" => $this->personId]);
+		$STMT->execute(["personId" => $personId]);
 		$STMT->setFetchMode(\PDO::FETCH_OBJ);
 		return $STMT->fetch();
 	}

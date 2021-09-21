@@ -9,7 +9,7 @@ class PersonController extends \app\core\Controller {
 
         $data = $myPerson->getAllPeople(); //Use to retrieve all the data from the database 
 
-        $this->view("/Main/index", $data);
+        $this->view("Main/index", $data);
     }
 
     public function insertPersonController() {
@@ -21,27 +21,27 @@ class PersonController extends \app\core\Controller {
             $myPerson->insertPerson();
             header('location:Main/index');
         } else {
-            $this->view('/Main/addPerson');
+            $this->view('Main/addPerson');
         }
     }
 
     public function deletePersonController($personId) {
         $myPerson = new \app\models\Person();
         $myPerson->deletePerson($personId);
-        header('location:Main/index');
+        header('location:/Main/index');
     }
 
     public function editPersonController($personId) {
-        $person = new \app\models\Person();
-        $person->getPerson($personId);
+        $data = new \app\models\Person();
+        $data->getPerson($personId);
         if(isset($_POST['save'])) {
-            $person->setFirstName($_POST['newFirstName']);
-            $person->setLastName($_POST['newLastName']);
-            $person->setNote($_POST['newNote']);
-            $person->updatePerson();
+            $data->setFirstName($_POST['newFirstName']);
+            $data->setLastName($_POST['newLastName']);
+            $data->setNote($_POST['newNote']);
+            $data->updatePerson();
             header("location:/Main/index");
         } else {
-            $this->view("/Main/edit", $person);
+            $this->view("Main/edit", $data);
         }
     }
 
